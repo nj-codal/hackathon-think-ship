@@ -1,0 +1,14 @@
+{
+    "extends": "@repo/typescript-config/sanity.json",
+    "compilerOptions": {
+        "baseUrl": "."
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
