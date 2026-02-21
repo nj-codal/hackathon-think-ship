@@ -33,7 +33,7 @@ export default async function HomePage() {
                             Explore Directory
                         </Link>
                         <Link 
-                            href="/studio"
+                            href="/submit"
                             className="inline-flex items-center justify-center rounded-xl bg-white/10 px-8 py-4 font-display text-lg font-bold text-white backdrop-blur-md transition-colors hover:bg-white/20"
                         >
                             Add a Resource

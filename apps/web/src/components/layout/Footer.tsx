@@ -14,13 +14,13 @@ export function Footer() {
                         <ul className="mt-4 space-y-2 text-sm font-medium">
                             <li><a href="/" className="hover:text-accent-400">Home</a></li>
                             <li><a href="/resources" className="hover:text-accent-400">Resources Map</a></li>
-                            <li><a href="/studio" className="hover:text-accent-400">Add a Place</a></li>
+                            <li><a href="/submit" className="hover:text-accent-400">Add a Place</a></li>
                         </ul>
                     </div>
                 </div>
                 <div className="mt-12 flex flex-col items-center justify-between border-t border-slate-800 pt-8 sm:flex-row">
                     <p className="text-sm text-slate-500">
-                        © {new Date().getFullYear()} Hackathon Civic Tech. All rights reserved.
+                        © {new Date().getFullYear()} AmdavadMap. All rights reserved.
                     </p>
                 </div>
             </div>

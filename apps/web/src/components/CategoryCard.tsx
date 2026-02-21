@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Category } from '@/lib/types'
+import { getCategoryIcon } from '@/lib/categoryIcons'
 
 export function CategoryCard({ category }: { category: Category }) {
+    const Icon = getCategoryIcon(category.title)
+
     return (
         <Link 
             href={`/resources?category=${category.slug}`}
@@ -14,7 +17,7 @@ export function CategoryCard({ category }: { category: Category }) {
                 {category.iconUrl ? (
                     <img src={category.iconUrl} alt={category.title} className="h-6 w-6 object-contain" />
                 ) : (
-                    <div className="h-6 w-6 rounded-full bg-brand-500" />
+                    <Icon className="h-6 w-6" strokeWidth={1.5} />
                 )}
             </div>
 

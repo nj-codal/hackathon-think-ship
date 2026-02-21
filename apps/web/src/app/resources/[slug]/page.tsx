@@ -1,11 +1,12 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowLeft, Globe, Mail, MapPin, Phone, Tag, Users } from 'lucide-react'
+import { ArrowLeft, Globe, Mail, MapPin, Phone, Users } from 'lucide-react'
 import { sanityFetch } from '@/sanity/lib/live'
 import { GET_RESOURCE_BY_SLUG_QUERY } from '@/sanity/lib/queries'
 import GoogleMapComponent from '@/components/GoogleMapComponent'
 import { LocalBusinessSchema } from '@/components/LocalBusinessSchema'
+import { getCategoryIcon } from '@/lib/categoryIcons'
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const params = await props.params
@@ -76,7 +77,11 @@ export default async function ResourceDetailPage(props: { params: Promise<{ slug
                         
                         <div className="absolute bottom-0 left-0 p-6 sm:p-10">
                             <div className="mb-4 flex flex-wrap items-center gap-3">
-                                <span className="inline-flex items-center rounded bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white shadow">
+                                <span className="inline-flex items-center gap-1.5 rounded bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white shadow">
+                                    {(() => {
+                                        const CategoryIcon = getCategoryIcon(resource.category)
+                                        return <CategoryIcon className="h-3.5 w-3.5" />
+                                    })()}
                                     {resource.category}
                                 </span>
                                 {resource.eligibility && (
@@ -145,7 +150,10 @@ export default async function ResourceDetailPage(props: { params: Promise<{ slug
                                 {/* Category & Region Tags */}
                                 <div className="flex flex-wrap gap-2">
                                     <div className="flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-2 text-sm font-bold text-brand-700">
-                                        <Tag className="h-4 w-4" />
+                                        {(() => {
+                                            const CategoryIcon = getCategoryIcon(resource.category)
+                                            return <CategoryIcon className="h-4 w-4" />
+                                        })()}
                                         {resource.category}
                                     </div>
                                     <div className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-bold text-slate-700">

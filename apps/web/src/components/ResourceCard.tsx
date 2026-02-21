@@ -1,11 +1,28 @@
 import Link from 'next/link'
 import { MapPin, ArrowUpRight } from 'lucide-react'
 import { Resource } from '@/lib/types'
+import { getCategoryIcon } from '@/lib/categoryIcons'
 
-export function ResourceCard({ resource, isActive }: { resource: Resource; isActive?: boolean }) {
+export function ResourceCard({ 
+    resource, 
+    isActive,
+    onMouseEnter,
+    onMouseLeave
+}: { 
+    resource: Resource; 
+    isActive?: boolean;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+}) {
+    const Icon = getCategoryIcon(resource.category)
+
     return (
         <Link href={`/resources/${resource.slug}`} className="block w-full">
-            <article className={`group flex flex-col sm:flex-row gap-4 sm:gap-6 rounded-2xl border-2 p-4 transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${isActive ? 'border-brand-600 bg-brand-50 brutal-shadow' : 'border-slate-200 bg-white hover:border-slate-900'}`}>
+            <article 
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                className={`group flex flex-col sm:flex-row gap-4 sm:gap-6 rounded-2xl border-2 p-4 transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${isActive ? 'border-brand-600 bg-brand-50 brutal-shadow' : 'border-slate-200 bg-white hover:border-slate-900'}`}
+            >
                 {resource.featuredImageUrl && (
                     <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-xl border-2 border-slate-900 sm:h-auto sm:w-48">
                         <img 
@@ -19,7 +36,8 @@ export function ResourceCard({ resource, isActive }: { resource: Resource; isAct
                 
                 <div className="flex flex-1 flex-col py-2">
                     <div className="mb-2 flex flex-wrap items-center gap-2">
-                        <span className="inline-flex items-center rounded-sm bg-brand-100 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-brand-900">
+                        <span className="inline-flex items-center gap-1 rounded-sm bg-brand-100 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-brand-900">
+                            <Icon className="h-3 w-3" />
                             {resource.category}
                         </span>
                         {resource.eligibility && (
