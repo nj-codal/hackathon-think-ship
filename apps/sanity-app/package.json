@@ -13,7 +13,7 @@
         "@sanity/sdk-react": "^2.7.0",
         "react": "^19.2.2",
         "react-dom": "^19.2.2",
-        "sanity": "^5.10.0"
+        "sanity": "^5.11.0"
     },
     "devDependencies": {
         "@repo/typescript-config": "workspace:*",

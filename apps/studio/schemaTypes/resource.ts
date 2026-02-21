@@ -1,0 +1,135 @@
+import { defineField, defineType } from 'sanity'
+
+export const resourceType = defineType({
+    name: 'resource',
+    title: 'Resource',
+    type: 'document',
+    groups: [
+        { name: 'details', title: 'Details' },
+        { name: 'location', title: 'Location' },
+        { name: 'media', title: 'Media' },
+        { name: 'admin', title: 'Admin' },
+    ],
+    fields: [
+        defineField({
+            name: 'isApproved',
+            title: 'Approved',
+            type: 'boolean',
+            description: 'Only approved resources appear on the public site.',
+            initialValue: false,
+            group: 'admin',
+        }),
+        defineField({
+            name: 'title',
+            title: 'Title',
+            type: 'string',
+            description: 'Name of the place or service',
+            group: 'details',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            options: { source: 'title', maxLength: 96 },
+            group: 'details',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'category',
+            title: 'Category',
+            type: 'reference',
+            to: [{ type: 'category' }],
+            group: 'details',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'region',
+            title: 'Region',
+            type: 'reference',
+            to: [{ type: 'region' }],
+            group: 'location',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'description',
+            title: 'Description',
+            type: 'text',
+            group: 'details',
+        }),
+        defineField({
+            name: 'location',
+            title: 'Location on Map',
+            type: 'geopoint',
+            group: 'location',
+            description: 'Drop a pin to save Latitude and Longitude',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'address',
+            title: 'Physical Address',
+            type: 'string',
+            group: 'location',
+        }),
+        defineField({
+            name: 'contactInfo',
+            title: 'Contact Information',
+            type: 'object',
+            group: 'details',
+            fields: [
+                defineField({ name: 'phone', title: 'Phone', type: 'string' }),
+                defineField({ name: 'email', title: 'Email', type: 'string' }),
+                defineField({ name: 'website', title: 'Website URL', type: 'url' }),
+                defineField({ name: 'socials', title: 'Social Media', type: 'string' }),
+            ],
+        }),
+        defineField({
+            name: 'services',
+            title: 'Services Offered',
+            type: 'array',
+            of: [{ type: 'string' }],
+            group: 'details',
+            description: 'e.g., ["Black & White", "Color", "Spiral Binding"]'
+        }),
+        defineField({
+            name: 'eligibility',
+            title: 'Eligibility Criteria',
+            type: 'string',
+            group: 'details',
+            description: 'e.g., "Below poverty line", "Open to all"'
+        }),
+        defineField({
+            name: 'featuredImage',
+            title: 'Featured Image',
+            type: 'image',
+            options: { hotspot: true },
+            group: 'media',
+        }),
+        defineField({
+            name: 'gallery',
+            title: 'Gallery Images',
+            type: 'array',
+            of: [{ type: 'image' }],
+            group: 'media',
+        }),
+        defineField({
+            name: 'seo',
+            title: 'SEO',
+            type: 'seo',
+            group: 'admin',
+        }),
+        defineField({
+            name: 'structuredData',
+            title: 'Structured Data (Schema.org)',
+            type: 'structuredData',
+            group: 'admin',
+        }),
+    ],
+    preview: {
+        select: {
+            title: 'title',
+            subtitle: 'category.title',
+            media: 'featuredImage',
+        },
+    },
+})
