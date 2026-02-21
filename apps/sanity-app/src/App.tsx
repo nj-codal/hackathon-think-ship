@@ -5,7 +5,7 @@ import './App.css'
 
 const config: SanityConfig[] = [
     {
-        projectId: '<your-project-id>',
+        projectId: 'lizsas7c',
         dataset: 'production',
     },
 ]

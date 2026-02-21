@@ -3,8 +3,8 @@ import { SanityLive } from '@/sanity/lib/live'
 import './globals.css'
 
 export const metadata: Metadata = {
-    title: 'Hackathon',
-    description: 'Built with Next.js and Sanity',
+    title: 'Ahmedabad Resource Map',
+    description: 'Find community resources near you — mental health, food banks, clinics, gyms, and more across Ahmedabad.',
 }
 
 export default function RootLayout({

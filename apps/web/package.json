@@ -6,15 +6,26 @@
         "dev": "next dev --port 3000",
         "build": "next build",
         "start": "next start",
-        "typecheck": "tsc --noEmit"
+        "typecheck": "tsc --noEmit",
+        "seed": "npx tsx scripts/seed.ts",
+        "migrate": "npx tsx scripts/migrate-batch.ts",
+        "cleanup": "npx tsx scripts/cleanup-duplicates.ts"
     },
     "dependencies": {
+        "@hookform/resolvers": "^5.2.2",
+        "@react-google-maps/api": "^2.20.8",
         "@sanity/client": "^7.6.0",
+        "@sanity/google-maps-input": "^4.2.1",
         "@sanity/image-url": "^2.0.3",
+        "@sanity/vision": "^5.11.0",
+        "dotenv": "^17.3.1",
         "next": "^16.1.6",
         "next-sanity": "^12.1.0",
         "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react-dom": "^19.0.0",
+        "react-hook-form": "^7.71.2",
+        "sanity": "^5.11.0",
+        "zod": "^4.3.6"
     },
     "devDependencies": {
         "@repo/typescript-config": "workspace:*",
